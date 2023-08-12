@@ -1,5 +1,7 @@
 package utils;
 
+import actions.HomePageActions;
+import interfaces.HomePageInterface;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -10,8 +12,9 @@ import utils.BaseTest;
 public class Hooks {
 
     @Before
-    public static void setUp(){
+    public static void setUp() throws Exception {
         BaseTest.setUpDriver();
+        PageObjects_Base.pageObjectSetup();
     }
 
     @After
