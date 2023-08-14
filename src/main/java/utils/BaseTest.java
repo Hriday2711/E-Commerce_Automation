@@ -7,52 +7,59 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
 
-public class BaseTest {
+public class BaseTest extends DataProvider {
 
-    private static BaseTest baseTest;
-    private static WebDriver driver;
-    public static final int TIMEOUT = 10;
 
-    private BaseTest(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(TIMEOUT));
-    }
+    public static WebDriver driver;
+
+    private static String safari = "safari";
+    private static String chrome = "chrome";
 
     /**
      * Method to open and access the webpage for automation test
      * @param url
      */
-    public static void openPage(String url){
-        driver.get(url);
+    public void openPage(String url) throws Exception {
+       getDriver().get(url);
     }
 
     /**
-     * Method to return the WebDriver object
+     * Method to return the created WebDriver instance
      * @return
      */
-    public static WebDriver getDriver(){
+    public WebDriver getDriver() throws Exception {
+        if(driver==null){
+            setDriver();
+        }
         return driver;
     }
 
     /**
      * Method to setup the Web driver instance for automation test
      */
-    public static void setUpDriver(){
-        if(baseTest==null){
-            baseTest = new BaseTest();
-        }
+    public void setDriver() throws Exception {
+            if(getBrowser().equals(safari)){
+                WebDriverManager.safaridriver().setup();
+                driver = new SafariDriver();
+                driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(getImplicitlyWait()));
+            } else if(getBrowser().equals(chrome)){
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                driver.manage().window().maximize();
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(getImplicitlyWait()));
+            } else {
+                throw new Exception("Browser is not compatible. Please check the app-config file!!");
+            }
     }
 
     /**
      * Method to quit the WebDriver instance after completion of automation test
      */
-    public static void tearDown(){
+    public void closeTheDriver() throws Exception {
         if(driver!=null){
             driver.close();
             driver.quit();
         }
-        baseTest = null;
     }
 }

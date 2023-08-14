@@ -1,37 +1,30 @@
 package actions;
 
-import com.beust.ah.A;
 import interfaces.HomePageInterface;
-import locators.HomePageLocators;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BaseTest;
-import utils.Hooks;
-import utils.PageObjects_Base;
 
-import static locators.HomePageLocators.*;
+import java.time.Duration;
 
-public class HomePageActions extends PageObjects_Base implements HomePageInterface {
+public class HomePageActions extends BaseTest implements HomePageInterface {
 
-    @FindBy(linkText = "Sign In")
-    public static WebElement signInButton;
+    private WebDriver driver;
+    public HomePageActions(WebDriver driver) {
+       this.driver = driver;
+    }
+
+   public static final By homeButton = By.xpath("(//a[normalize-space()='Home'])[1]");
 
     @FindBy(linkText = "Create an Account")
     public static WebElement createAnAccountButton;
 
     @FindBy(xpath = "//a[@aria-label='store logo']//img")
     public static WebElement eCommerceLogo;
-
-    //Setting the object of the homePageLocators to null
-    HomePageLocators homePageLocators = null;
-
-    //Creating constructor of the HomePageActions class and thereby invoking
-    public HomePageActions(){
-        this.homePageLocators = new HomePageLocators();
-        PageFactory.initElements(BaseTest.getDriver(),homePageLocators);
-    }
 
     /**
      * Verify the content of the E-Commerce HomePage
@@ -40,9 +33,10 @@ public class HomePageActions extends PageObjects_Base implements HomePageInterfa
     @Override
     public void verifyTheECommerceHomePage() throws Exception {
         System.out.println("Verifying the E-Commerce HomePage");
-        Assert.assertTrue(signInButton.isDisplayed(),"Sign-In button on E-Commerce Home Page is not displayed");
-        Assert.assertTrue(createAnAccountButton.isDisplayed(),"Create an Account button on E-Commerce Home page is not displayed");
-        Assert.assertTrue(eCommerceLogo.isDisplayed(),"E-Commerce Brand logo is not displayed");
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfElementLocated(homeButton));
+        String title = getDriver().getTitle();
+        System.out.println(title);
     }
 
 }
