@@ -11,7 +11,7 @@ import utils.BaseTest;
 
 /**
  * This is the Test-Runner class for the BDD Cucumber framework which will help to run the feature files
- * Also, it will generate the test report in HTML, XML and JSON format
+ * Also, it will generate the test report in HTML or JSON format
  */
 @CucumberOptions(features = "src/test/resources/features/", glue = "stepDefination",
                 plugin = {"json:target/cucumber.json","html:target/cucumber.html"})
