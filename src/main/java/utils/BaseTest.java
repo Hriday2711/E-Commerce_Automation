@@ -1,5 +1,6 @@
 package utils;
 
+import actions.HomePageActions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +22,13 @@ public class BaseTest extends DataProvider {
      */
     public void openPage(String url) throws Exception {
        getDriver().get(url);
+    }
+
+    /**
+     * Launch the HomePage
+     */
+    public void launchHomePage() throws Exception {
+        openPage(getApplicationUrl());
     }
 
     /**
