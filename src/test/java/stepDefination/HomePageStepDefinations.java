@@ -5,13 +5,18 @@ import utils.PageObjects_Base;
 
 public class HomePageStepDefinations extends PageObjects_Base {
 
-    @Given("^Launch App and Verify Home screen$")
+    @And("^Home Page - Launch App and Verify Home screen$")
     public void launchApp() throws Exception {
         launchHomePage();
     }
 
-    @And("^Home Page - Verify if the user is on LUMA Magneto E-Commerce Home Page$")
+    @And("^Home Page - Verify if the user is on Home Page$")
     public void verifyTheHomePage() throws Exception {
-        homePage.verifyTheECommerceHomePage();
+        homePage.verifyTheHomePageTitle();
+    }
+
+    @And("^Home Page - Click on SignUp/Login Button$")
+    public void clickOnSignUpAndLoginButtonOnHomePage() throws Exception {
+        homePage.clickOnSignUpAndLoginButtonOnHomePage();
     }
 }

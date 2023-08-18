@@ -1,6 +1,7 @@
 package utils;
 
 import actions.HomePageActions;
+import actions.LoginPageActions;
 import org.openqa.selenium.WebDriver;
 
 public class PageObjects_Base extends BaseTest{
@@ -11,5 +12,6 @@ public class PageObjects_Base extends BaseTest{
      */
     public WebDriver driver;
     public HomePageActions homePage = new HomePageActions(driver);
+    public LoginPageActions loginPage = new LoginPageActions(driver);
 
 }

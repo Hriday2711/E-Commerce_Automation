@@ -1,5 +1,7 @@
 package utils;
 
+import com.github.javafaker.Faker;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Properties;
@@ -17,6 +19,7 @@ public class DataProvider {
      */
     private Properties properties;
     private final String propertyFilePath = "config/application.properties";
+    private static Faker faker;
 
 
     public DataProvider(){
@@ -65,5 +68,19 @@ public class DataProvider {
         String url = properties.getProperty("applicationURL");
         if(url != null) return url;
         else throw new RuntimeException("url not specified in the Configuration.properties file.");
+    }
+
+    public static String getRandomFullName() throws Exception {
+        faker = new Faker();
+        String fullName = faker.name().fullName();
+        System.out.println("Random Full Name as: "+ fullName);
+        return fullName;
+    }
+
+    public static String getRandomEmail() throws Exception {
+        faker = new Faker();
+        String randomEmail = faker.internet().emailAddress();
+        System.out.println("Random Email is: "+randomEmail);
+        return randomEmail;
     }
 }
