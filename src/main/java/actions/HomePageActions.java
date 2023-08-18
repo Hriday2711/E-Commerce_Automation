@@ -16,31 +16,36 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
 
     //Declaring the webdriver here to create a constructor for this class which can be used and these two steps will be common for other classes that will be declared in future.
     private WebDriver driver;
-    public HomePageActions(WebDriver driver) {
+
+    public HomePageActions(WebDriver driver){
        this.driver = driver;
     }
 
     //Locators for the Home Page will be written here
-   public static final By homeButton = By.xpath("(//a[normalize-space()='Home'])[1]");
+    public static final By homeButton = By.xpath("(//a[normalize-space()='Home'])[1]");
+    public static final By signUpAndLoginBtn = By.xpath("//header[@id='header']//a[@href='/login']");
 
-    @FindBy(linkText = "Create an Account")
-    public static WebElement createAnAccountButton;
 
-    @FindBy(xpath = "//a[@aria-label='store logo']//img")
-    public static WebElement eCommerceLogo;
 
-    //***********Methods initialized in the Interface will be implemented with the Java-Selenium Logic here ****************//
+
+    //*********** Methods initialized in the Interface will be implemented with the Java-Selenium Logic here ****************//
 
     /**
      * Verify the content of the E-Commerce HomePage
      * @throws Exception
      */
     @Override
-    public void verifyTheECommerceHomePage() throws Exception {
+    public void verifyTheHomePageTitle() throws Exception {
         System.out.println("Verifying the E-Commerce HomePage");
-        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfElementLocated(homeButton));
-        String title = getDriver().getTitle();
+        waitUntilElementIsDisplayed(homeButton,10);
+        String title = getTitleOfPage();
         System.out.println(title);
+    }
+
+    @Override
+    public void clickOnSignUpAndLoginButtonOnHomePage() throws Exception {
+        System.out.println("Clicking on Sign Up/Login Button on Home Page");
+        waitUntilElementIsDisplayed(signUpAndLoginBtn,10);
+        getDriver().findElement(signUpAndLoginBtn).click();
     }
 }
