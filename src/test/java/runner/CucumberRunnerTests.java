@@ -4,10 +4,7 @@ package runner;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.TestNGCucumberRunner;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 import utils.BaseTest;
 
 
@@ -19,27 +16,17 @@ import utils.BaseTest;
                 plugin = {"json:target/cucumber.json","html:target/cucumber.html"})
 public class CucumberRunnerTests extends AbstractTestNGCucumberTests {
 
-
     private TestNGCucumberRunner testNGCucumberRunner;
 
-    @BeforeClass(alwaysRun = true)
-    public void setUpClass() throws Exception {
+    @BeforeSuite(alwaysRun = true) @Parameters({"browser","applicationURL"})
+    public void setUpSuite(String driver, String applicationURL) {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
-//Below code needs some investigation
-//    @Test(groups = "cucumber scenarios", description = "Runs Cucumber Scenarios", dataProvider = "scenarios")
-//    public void scenario(PickleEventWrapper pickleEvent, CucumberFeatureWrapper cucumberFeature) throws Throwable {
-//        testNGCucumberRunner.runScenario(pickleEvent.getPickleEvent());
-//    }
-//    @DataProvider
-//    public Object[][] scenarios() {
-//        return testNGCucumberRunner.provideScenarios();
-//    }
-    @AfterClass(alwaysRun = true)
+
+    @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
         BaseTest baseTest = new BaseTest();
         baseTest.closeTheDriver();
         testNGCucumberRunner.finish();
     }
-
 }

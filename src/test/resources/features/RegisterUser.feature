@@ -1,6 +1,8 @@
+@RegisterUser
+
 Feature: Register A User on Automation Exercise Website
 
-
+  #Below scenario will allow the user to register on Automation exercise website
   Scenario: Register a User on Automation Exercise Website
     Given Home Page - Launch App and Verify Home screen
       And Home Page - Verify if the user is on Home Page
