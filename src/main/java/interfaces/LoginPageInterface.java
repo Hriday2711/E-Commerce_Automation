@@ -15,5 +15,5 @@ public interface LoginPageInterface {
     /**
      * Click on Sign Up button on Login page
      */
-    void clickOnSignUpButton() throws Exception;
+    void clickOnSignUpButtonOnLoginPage() throws Exception;
 }

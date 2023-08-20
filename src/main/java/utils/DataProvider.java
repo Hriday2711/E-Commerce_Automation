@@ -5,6 +5,7 @@ import com.github.javafaker.Faker;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Properties;
+import java.util.Random;
 
 public class DataProvider {
 
@@ -70,17 +71,65 @@ public class DataProvider {
         else throw new RuntimeException("url not specified in the Configuration.properties file.");
     }
 
+    /**
+     * Method to get a random full Name for automation test
+     * @return - Full Name in the form of string
+     * @throws Exception
+     */
     public static String getRandomFullName() throws Exception {
         faker = new Faker();
-        String fullName = faker.name().fullName();
-        System.out.println("Random Full Name as: "+ fullName);
-        return fullName;
+        return faker.name().fullName();
     }
 
+    /**
+     * Method to get a random email for automation test
+     * @return - Email in form of String
+     * @throws Exception
+     */
     public static String getRandomEmail() throws Exception {
         faker = new Faker();
-        String randomEmail = faker.internet().emailAddress();
-        System.out.println("Random Email is: "+randomEmail);
-        return randomEmail;
+        return faker.internet().emailAddress();
+    }
+
+    /**
+     * Method to get a Random integer which we can use in our automation test within a range
+     * @param min - base value of the range within which you need an integer
+     * @param max - maximum value of the range within which you need an integer
+     * @return
+     * @throws Exception
+     */
+    public static int getRandomInt(int min, int max) throws Exception {
+        faker = new Faker();
+        return faker.number().numberBetween(min, max);
+    }
+
+    public static String getCompanyName() throws Exception {
+        faker = new Faker();
+        return faker.company().name();
+    }
+
+    public static String getRandomAddress() throws Exception {
+        faker = new Faker();
+        return faker.address().streetAddress();
+    }
+
+    public static String getRandomStateName() throws Exception {
+        faker = new Faker();
+        return faker.address().state();
+    }
+
+    public static String getRandomCityName() throws Exception {
+        faker = new Faker();
+        return faker.address().cityName();
+    }
+
+    public static String getRandomZipCode() throws Exception {
+        faker = new Faker();
+        return faker.address().zipCode();
+    }
+
+    public static String getRandomMobileNumber() throws Exception {
+        faker = new Faker();
+        return faker.phoneNumber().cellPhone();
     }
 }

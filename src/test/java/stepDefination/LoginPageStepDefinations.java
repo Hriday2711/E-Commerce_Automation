@@ -17,6 +17,6 @@ public class LoginPageStepDefinations extends PageObjects_Base {
 
     @And("^Login Page - Click on Sign Up button$")
     public void clickOnSignUpButton() throws Exception {
-        loginPage.clickOnSignUpButton();
+        loginPage.clickOnSignUpButtonOnLoginPage();
     }
 }
