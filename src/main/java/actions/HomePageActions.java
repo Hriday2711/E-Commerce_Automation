@@ -8,9 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BaseTest;
-import utils.PageObjects_Base;
+import utils.PageObjects_Base.*;
 
 import java.time.Duration;
+
+import static utils.PageObjects_Base.*;
 
 public class HomePageActions extends BaseTest implements HomePageInterface {
 
@@ -37,7 +39,7 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
     @Override
     public void verifyTheHomePageTitle() throws Exception {
         System.out.println("Verifying the E-Commerce HomePage");
-        waitUntilElementIsDisplayed(homeButton,10);
+        common.waitUntilElementIsDisplayed(homeButton,10);
         String title = getTitleOfPage();
         System.out.println(title);
     }
@@ -45,7 +47,7 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
     @Override
     public void clickOnSignUpAndLoginButtonOnHomePage() throws Exception {
         System.out.println("Clicking on Sign Up/Login Button on Home Page");
-        waitUntilElementIsDisplayed(signUpAndLoginBtn,10);
+        common.waitUntilElementIsDisplayed(signUpAndLoginBtn,10);
         getDriver().findElement(signUpAndLoginBtn).click();
     }
 }
