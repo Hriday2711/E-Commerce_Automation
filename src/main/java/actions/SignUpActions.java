@@ -55,6 +55,10 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
     public static final By mobNumberLabelXpath = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.mobileNumberLabel));
     public static final By mobileNumberInputXpath = By.id("mobile_number");
     public static final By createAccountButton = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.createAccountText));
+    public static final By accountCreatedHeaderXpath = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.accountCreatedHeader));
+    public static final By accountCreatedBodyText1Xpath  = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.accountCreatedBodyText1));
+    public static final By accountCreatedBodyText2Xpath = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.accountCreatedBodyText2));
+    public static final By continueButtonXpath = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.continueButtonText));
 
     @Override
     public void verifyTheContentOfSignUpPage() throws Exception {
@@ -151,5 +155,21 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
         String mobNumber = DataProvider.getRandomMobileNumber();
         System.out.println("User's mobile number is: " + mobNumber);
         common.enterTheDetailsOnInputField(mobileNumberInputXpath,mobNumber);
+    }
+
+    @Override
+    public void verifyContentOfAccountCreationConfirmationPage() throws Exception {
+        System.out.println("Verifying Confirmation page for Account Creation");
+        common.waitUntilElementIsDisplayed(accountCreatedHeaderXpath,10);
+        common.verifyTextByLocatorAndExpectedText(accountCreatedHeaderXpath,LocaleWeb.SignUpPage.accountCreatedHeader.toUpperCase());
+        common.verifyTextByLocatorAndExpectedText(accountCreatedBodyText1Xpath,LocaleWeb.SignUpPage.accountCreatedBodyText1);
+        common.verifyTextByLocatorAndExpectedText(accountCreatedBodyText2Xpath,LocaleWeb.SignUpPage.accountCreatedBodyText2);
+        common.verifyTextByLocatorAndExpectedText(continueButtonXpath,LocaleWeb.SignUpPage.continueButtonText);
+    }
+
+    @Override
+    public void clickOnContinueButtonOnAccountCreationConfirmationPage() throws Exception {
+        System.out.println("Clicking on Continue button on Account creation confirmation page");
+        common.scrollAndClickElement(continueButtonXpath,false);
     }
 }

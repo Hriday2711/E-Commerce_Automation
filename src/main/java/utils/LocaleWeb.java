@@ -27,6 +27,10 @@ public class LocaleWeb {
             public static String zipCodeLabel = "Zipcode";
             public static String mobileNumberLabel = "Mobile Number";
             public static String createAccountText = "Create Account";
+            public static String accountCreatedHeader = "Account Created!";
+            public static String accountCreatedBodyText1 = "Congratulations! Your new account has been successfully created!";
+            public static String accountCreatedBodyText2 = "You can now take advantage of member privileges to enhance your online shopping experience with us.";
+            public static String continueButtonText = "Continue";
         }
 
 }

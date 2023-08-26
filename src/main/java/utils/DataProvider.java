@@ -18,7 +18,7 @@ public class DataProvider {
      * Each key and its corresponding value in the property list is a string.
      * properties.load(reader): Reads a property list (key and element pairs) from the input character stream in a simple line-oriented format.
      */
-    private Properties properties;
+    private static Properties properties;
     private final String propertyFilePath = "config/application.properties";
     private static Faker faker;
 
@@ -69,6 +69,48 @@ public class DataProvider {
         String url = properties.getProperty("applicationURL");
         if(url != null) return url;
         else throw new RuntimeException("url not specified in the Configuration.properties file.");
+    }
+
+    public static String getRemoteServerURL(){
+        String remoteServerURL = properties.getProperty("remoteServerURL");
+        if(remoteServerURL!=null) return remoteServerURL;
+        else throw new RuntimeException("Remote Server URL is not defined. Please check the application.properties file.");
+    }
+
+    public static String getBrowserVersion(){
+        String remoteBrowserVersion = properties.getProperty("browserVersion");
+        if(remoteBrowserVersion!=null) return remoteBrowserVersion;
+        else throw new RuntimeException("Remote Browser Version is not defined. Please check application.properties file.");
+    }
+
+    public static String getRemoteServerUserName(){
+        String remoteServerUserName = properties.getProperty("remoteServerUserName");
+        if(remoteServerUserName!=null) return  remoteServerUserName;
+        else throw new RuntimeException("Remote server user-name is not defined in application.properties file.");
+    }
+
+    public static String getRemoteServerAccessKey(){
+        String remoteServerAccessKey = properties.getProperty("remoteServerAccessKey");
+        if(remoteServerAccessKey!=null) return remoteServerAccessKey;
+        else throw new RuntimeException("Remote server access key is not defined in application.properties file.");
+    }
+
+    public static String getRemoteServerBuild(){
+        String remoteServerBuild = properties.getProperty("remoteServerBuild");
+        if(remoteServerBuild!=null) return remoteServerBuild;
+        else throw new RuntimeException("Remote Server Build is not defined in application.properties file");
+    }
+
+    public static String getPlatformName(){
+        String platformName = properties.getProperty("platformName");
+        if(platformName!=null) return platformName;
+        else throw new RuntimeException("Platform Name is not defined in application.properties file");
+    }
+
+    public static String getRemoteServerTestName(){
+        String remoteServerTestName = properties.getProperty("remoteServerTestName");
+        if(remoteServerTestName!=null) return remoteServerTestName;
+        else throw new RuntimeException("Remote server test name is not defined in application.properties file.");
     }
 
     /**

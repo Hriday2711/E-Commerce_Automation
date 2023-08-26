@@ -12,4 +12,9 @@ public interface HomePageInterface {
      * Click on SignUp/Login button on Home Page
      */
     void clickOnSignUpAndLoginButtonOnHomePage() throws Exception;
+
+    /**
+     * Click on Delete Account button on Home Page
+     */
+    void clickOnDeleteAccountButtonOnHomePage() throws Exception;
 }
