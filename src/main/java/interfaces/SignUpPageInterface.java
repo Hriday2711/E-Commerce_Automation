@@ -22,4 +22,14 @@ public interface SignUpPageInterface {
      * Enter the Address Information on Create an Account page
      */
     void enterAddressDetailsOnSignUpPage() throws Exception;
+
+    /**
+     * Verify the content of Account creation confirmation page
+     */
+    void verifyContentOfAccountCreationConfirmationPage() throws Exception;
+
+    /**
+     * Click on Continue Button on Account creation confirmation page
+     */
+    void clickOnContinueButtonOnAccountCreationConfirmationPage() throws Exception;
 }

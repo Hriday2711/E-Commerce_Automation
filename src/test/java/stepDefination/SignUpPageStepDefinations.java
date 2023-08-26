@@ -24,4 +24,14 @@ public class SignUpPageStepDefinations extends PageObjects_Base {
     public void enterAddressDetailsOnSignUpPage() throws Exception {
         signUpPage.enterAddressDetailsOnSignUpPage();
     }
+
+    @And("^Sign Up - Verify Confirmation of Account creation$")
+    public void verifyContentOfAccountCreationConfirmationPage() throws Exception {
+        signUpPage.verifyContentOfAccountCreationConfirmationPage();
+    }
+
+    @And("^Sign Up - Click on Continue Button on Account confirmation page$")
+    public void clickOnContinueButtonOnAccountCreationConfirmationPage() throws Exception {
+        signUpPage.clickOnContinueButtonOnAccountCreationConfirmationPage();
+    }
 }

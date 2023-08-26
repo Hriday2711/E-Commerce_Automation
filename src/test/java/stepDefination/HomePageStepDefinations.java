@@ -19,4 +19,9 @@ public class HomePageStepDefinations extends PageObjects_Base {
     public void clickOnSignUpAndLoginButtonOnHomePage() throws Exception {
         homePage.clickOnSignUpAndLoginButtonOnHomePage();
     }
+
+    @And("^Home Page - Click on Delete Account Button$")
+    public void clickOnDeleteAccountButtonOnHomePage() throws Exception {
+        homePage.clickOnDeleteAccountButtonOnHomePage();
+    }
 }

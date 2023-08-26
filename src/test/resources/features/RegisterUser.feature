@@ -13,4 +13,7 @@ Feature: Register A User on Automation Exercise Website
      Then Sign Up - Verify the Content of Sign Up Page
       And Sign Up - Enter the Account details
       And Sign Up - Enter the Address Details
-      And Sign Up - Click on Create Account Button
+     Then Sign Up - Click on Create Account Button
+      And Sign Up - Verify Confirmation of Account creation
+      And Sign Up - Click on Continue Button on Account confirmation page
+     Then Home Page - Click on Delete Account Button

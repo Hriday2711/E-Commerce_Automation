@@ -26,7 +26,7 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
     //Locators for the Home Page will be written here
     public static final By homeButton = By.xpath("(//a[normalize-space()='Home'])[1]");
     public static final By signUpAndLoginBtn = By.xpath("//header[@id='header']//a[@href='/login']");
-
+    public static final By deleteAccountButton = By.linkText(" Delete Account");
 
 
 
@@ -49,5 +49,11 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
         System.out.println("Clicking on Sign Up/Login Button on Home Page");
         common.waitUntilElementIsDisplayed(signUpAndLoginBtn,10);
         getDriver().findElement(signUpAndLoginBtn).click();
+    }
+
+    @Override
+    public void clickOnDeleteAccountButtonOnHomePage() throws Exception {
+        System.out.println("Clicking on Delete Account Button on Home Page");
+        common.scrollAndClickElement(deleteAccountButton, false);
     }
 }
