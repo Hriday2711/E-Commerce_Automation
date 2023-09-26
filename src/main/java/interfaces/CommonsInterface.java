@@ -54,4 +54,9 @@ public interface CommonsInterface {
      * @throws Exception
      */
     String getValueOfOptionFromDropdown(By dropdownLocator, int index) throws Exception;
+
+    /**
+     * Refresh the browser page
+     */
+    void refreshTheBrowserPage() throws Exception;
 }

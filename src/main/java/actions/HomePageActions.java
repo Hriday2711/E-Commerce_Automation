@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.BaseTest;
+import utils.Log;
 import utils.PageObjects_Base.*;
 
 import java.time.Duration;
@@ -28,8 +29,6 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
     public static final By signUpAndLoginBtn = By.xpath("//header[@id='header']//a[@href='/login']");
     public static final By deleteAccountButton = By.linkText(" Delete Account");
 
-
-
     //*********** Methods initialized in the Interface will be implemented with the Java-Selenium Logic here ****************//
 
     /**
@@ -38,22 +37,25 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
      */
     @Override
     public void verifyTheHomePageTitle() throws Exception {
-        System.out.println("Verifying the E-Commerce HomePage");
+        Log.logComment("Verifying the E-Commerce HomePage");
         common.waitUntilElementIsDisplayed(homeButton,10);
         String title = getTitleOfPage();
-        System.out.println(title);
+        Log.logComment(title);
     }
 
     @Override
     public void clickOnSignUpAndLoginButtonOnHomePage() throws Exception {
-        System.out.println("Clicking on Sign Up/Login Button on Home Page");
+        Log.logComment("Clicking on Sign Up/Login Button on Home Page");
         common.waitUntilElementIsDisplayed(signUpAndLoginBtn,10);
-        getDriver().findElement(signUpAndLoginBtn).click();
+        common.scrollAndClickElement(signUpAndLoginBtn,false);
     }
 
     @Override
     public void clickOnDeleteAccountButtonOnHomePage() throws Exception {
-        System.out.println("Clicking on Delete Account Button on Home Page");
-        common.scrollAndClickElement(deleteAccountButton, false);
+        Log.logComment("Clicking on Delete Account Button on Home Page");
+        Log.logComment("Refreshing the browser page");
+        common.refreshTheBrowserPage();
+        common.waitUntilElementIsDisplayed(deleteAccountButton,10);
+        common.scrollAndClickElement(deleteAccountButton,false);
     }
 }
