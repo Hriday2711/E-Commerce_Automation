@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import utils.BaseTest;
 import utils.DataProvider;
 import utils.LocaleWeb;
+import utils.Log;
 
 import static utils.PageObjects_Base.*;
 
@@ -45,7 +46,7 @@ public class LoginPageActions extends BaseTest implements LoginPageInterface {
 
     @Override
     public void verifyIfUserIsOnSignUpOrLoginPage() throws Exception {
-        System.out.println("Verifying the Sign Up and Login page content");
+        Log.logComment("Verifying the Sign Up and Login page content");
         common.waitUntilElementIsDisplayed(signUpHeader,5);
         System.out.println(getTitleOfPage());
         common.verifyTextByLocatorAndExpectedText(signUpHeader,LocaleWeb.HomePage.signUpHeaderText);
@@ -54,7 +55,7 @@ public class LoginPageActions extends BaseTest implements LoginPageInterface {
 
     @Override
     public void enterTheDetailsOnSignUpSection() throws Exception {
-        System.out.println("Entering the details of User for Sign Up");
+        Log.logComment("Entering the details of User for Sign Up");
         String fullName = DataProvider.getRandomFullName();
         String[] splitFullName = fullName.split(" ");
         String firstName = splitFullName[0];
@@ -70,7 +71,7 @@ public class LoginPageActions extends BaseTest implements LoginPageInterface {
 
     @Override
     public void clickOnSignUpButtonOnLoginPage() throws Exception {
-        System.out.println("Clicking on Sign Up Button on Login page");
+        Log.logComment("Clicking on Sign Up Button on Login page");
         common.scrollAndClickElement(signUpButton, false);
     }
 }

@@ -11,7 +11,7 @@ public class PageObjects_Base extends BaseTest{
 
     /**
      * This class will contain all the objects of the classes that are under actions package and will return it back
-     * to the step-defination file so it can invoke any methods/logics when needed.
+     * to the step-defination file so it can invoke any methods/logics from any of the existing classes when required.
      */
     public static RemoteWebDriver driver;
     public static HomePageActions homePage = new HomePageActions(driver);
