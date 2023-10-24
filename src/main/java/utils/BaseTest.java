@@ -109,8 +109,8 @@ public class BaseTest extends DataProvider {
     }
 
     /**
-     *
-     * @return
+     * Create the sauce labs remote driver object with specified capabilities
+     * @return - the sauce labs object and pass it to the remote driver execution
      * @throws Exception
      */
     private static Map<String, Object> getSauceOptions() throws Exception {

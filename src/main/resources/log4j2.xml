@@ -6,10 +6,10 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="automation-logs" level="info" additivity="true">
+        <Logger name="automation-logs" level="warn" additivity="true">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Root level="info">
+        <Root level="warn">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

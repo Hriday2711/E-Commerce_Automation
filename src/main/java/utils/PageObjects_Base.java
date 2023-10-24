@@ -4,6 +4,7 @@ import actions.CommonActions;
 import actions.HomePageActions;
 import actions.LoginPageActions;
 import actions.SignUpActions;
+import api.methods;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -18,5 +19,6 @@ public class PageObjects_Base extends BaseTest{
     public static LoginPageActions loginPage = new LoginPageActions(driver);
     public static SignUpActions signUpPage = new SignUpActions(driver);
     public static CommonActions common = new CommonActions(driver);
+    public static methods apiMethods = new methods();
 
 }

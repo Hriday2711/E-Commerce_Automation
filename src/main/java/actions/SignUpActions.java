@@ -7,7 +7,7 @@ import org.testng.Assert;
 import utils.BaseTest;
 import utils.DataProvider;
 import utils.LocaleWeb;
-import utils.Log;
+import utils.Logger;
 
 import static utils.PageObjects_Base.*;
 
@@ -63,7 +63,7 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
 
     @Override
     public void verifyTheContentOfSignUpPage() throws Exception {
-        Log.logComment("Verifying Content of Sign Up page for Creating an Account");
+        Logger.logComment("Verifying Content of Sign Up page for Creating an Account");
         //Verifying labels and text on Sign Up page where user enters the info to create an account
         common.waitUntilElementIsDisplayed(enterAccountInfoHeader,10);
         common.verifyTextByLocatorAndExpectedText(enterAccountInfoHeader,LocaleWeb.SignUpPage.enterAccountInfoHeaderText.toUpperCase());
@@ -93,15 +93,15 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
 
     @Override
     public void enterAccountDetailsOnSignUpPage() throws Exception {
-        Log.logComment("Entering the Account details on Create an Account Page");
+        Logger.logComment("Entering the Account details on Create an Account Page");
         //Selecting the Title checkbox
         common.scrollAndClickElement(maleGenderCheckBox,true);
         //Checking if the name and email of the user are prefilled or not
         String userName = getDriver().findElement(nameInputFieldXpath).getAttribute("value");
-        Log.logComment("Name of the user is: " + userName);
+        Logger.logComment("Name of the user is: " + userName);
         String email = getDriver().findElement(emailInputFieldXpath).getAttribute("value");
         Assert.assertEquals(email, loginPage.getUserEmail());
-        Log.logComment("Email of the user is: "+ email);
+        Logger.logComment("Email of the user is: "+ email);
         //Enter the password
         String currentPassword = "Password1!";
         loginPage.setCurrentPassword(currentPassword);
@@ -116,7 +116,7 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
         int year = DataProvider.getRandomInt(1,10);
         String dobYear = common.getValueOfOptionFromDropdown(dobYearDropdown,year);
         common.selectDropdownValueByIndex(dobYearDropdown,year);
-        Log.logComment("DOB of user is: " + dobDay + " " + dobMonth + " " + dobYear);
+        Logger.logComment("DOB of user is: " + dobDay + " " + dobMonth + " " + dobYear);
         //Selecting newsletter checkbox
         common.scrollAndClickElement(newsLetterCheckbox,true);
         //Selecting the special offers checkbox
@@ -125,42 +125,42 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
 
     @Override
     public void enterAddressDetailsOnSignUpPage() throws Exception {
-        Log.logComment("Entering Address Details on Create an Account page");
+        Logger.logComment("Entering Address Details on Create an Account page");
         common.enterTheDetailsOnInputField(firstNameInputXpath, LoginPageActions.getFirstName());
-        Log.logComment("User first name is: " + LoginPageActions.getFirstName());
+        Logger.logComment("User first name is: " + LoginPageActions.getFirstName());
         common.enterTheDetailsOnInputField(lastNameInputXpath,LoginPageActions.getLastName());
-        Log.logComment("User last name is: " + LoginPageActions.getLastName());
+        Logger.logComment("User last name is: " + LoginPageActions.getLastName());
         common.enterTheDetailsOnInputField(companyNameInputXpath,DataProvider.getCompanyName());
         String userAddress = DataProvider.getRandomAddress();
-        Log.logComment("Address of the user is: " + userAddress);
+        Logger.logComment("Address of the user is: " + userAddress);
         common.enterTheDetailsOnInputField(addressInputXpath,userAddress);
         //Selecting country from the dropdown
         int country = DataProvider.getRandomInt(0,6);
         String countryName = common.getValueOfOptionFromDropdown(countryDropdownXpath,country);
-        Log.logComment("User's country is: " + countryName);
+        Logger.logComment("User's country is: " + countryName);
         common.scrollAndClickElement(countryDropdownXpath,true);
         common.selectDropdownValueByIndex(countryDropdownXpath,country);
         //Entering the State Information
         String stateName = DataProvider.getRandomStateName();
-        Log.logComment("User's State is: " + stateName);
+        Logger.logComment("User's State is: " + stateName);
         common.enterTheDetailsOnInputField(stateInputXpath,stateName);
         //Entering city information
         String cityName = DataProvider.getRandomCityName();
-        Log.logComment("User's City is : " + cityName);
+        Logger.logComment("User's City is : " + cityName);
         common.enterTheDetailsOnInputField(cityInputXpath,cityName);
         //Entering the zipcode information
         String zipCode = DataProvider.getRandomZipCode();
-        Log.logComment("User's zipcode is: " + zipCode);
+        Logger.logComment("User's zipcode is: " + zipCode);
         common.enterTheDetailsOnInputField(zipCodeInputXpath,zipCode);
         //Entering the mobile number info
         String mobNumber = DataProvider.getRandomMobileNumber();
-        Log.logComment("User's mobile number is: " + mobNumber);
+        Logger.logComment("User's mobile number is: " + mobNumber);
         common.enterTheDetailsOnInputField(mobileNumberInputXpath,mobNumber);
     }
 
     @Override
     public void verifyContentOfAccountCreationConfirmationPage() throws Exception {
-        Log.logComment("Verifying Confirmation page for Account Creation");
+        Logger.logComment("Verifying Confirmation page for Account Creation");
         common.waitUntilElementIsDisplayed(accountCreatedHeaderXpath,10);
         common.verifyTextByLocatorAndExpectedText(accountCreatedHeaderXpath,LocaleWeb.SignUpPage.accountCreatedHeader.toUpperCase());
         common.verifyTextByLocatorAndExpectedText(accountCreatedBodyText1Xpath,LocaleWeb.SignUpPage.accountCreatedBodyText1);
@@ -170,7 +170,7 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
 
     @Override
     public void clickOnContinueButtonOnAccountCreationConfirmationPage() throws Exception {
-        Log.logComment("Clicking on Continue button on Account creation confirmation page");
+        Logger.logComment("Clicking on Continue button on Account creation confirmation page");
         common.scrollAndClickElement(continueButtonXpath,false);
     }
 }

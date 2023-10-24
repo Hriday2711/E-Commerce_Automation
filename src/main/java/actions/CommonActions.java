@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import utils.BaseTest;
-import utils.Log;
+import utils.Logger;
 
 import java.time.Duration;
 import java.util.List;
@@ -88,7 +88,7 @@ public class CommonActions extends BaseTest implements CommonsInterface {
 
     @Override
     public void refreshTheBrowserPage() throws Exception {
-        Log.logAction("Refreshing the Page");
+        Logger.logAction("Refreshing the Page");
         getDriver().navigate().refresh();
     }
 }
