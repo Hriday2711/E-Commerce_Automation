@@ -22,8 +22,7 @@ import utils.DataProvider;
  */
 @CucumberOptions(features = "src/test/resources/features/", glue = "stepDefination",
                 plugin = {"json:target/cucumber.json",
-                          "html:target/cucumber.html",
-                          "pretty:com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+                          "html:target/cucumber.html",})
 @Listeners(utils.Listener.class)
 public class CucumberRunnerTests extends AbstractTestNGCucumberTests {
     Scenario scenario;
