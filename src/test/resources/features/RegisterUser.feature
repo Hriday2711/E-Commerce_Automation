@@ -1,6 +1,7 @@
 @RegisterUser
 Feature: Register and Delete a User on Automation Exercise e-Commerce website
 
+
   #Below scenario will allow the user to register on Automation exercise website
   Scenario: Register a User - Enter Details on Create an Account page - Verify if the Account is created - Delete the user account
     Given Home Page - Launch App and Verify Home screen

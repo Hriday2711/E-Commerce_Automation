@@ -8,42 +8,35 @@ public class Listener implements ITestListener {
 
 
     @Override
-    public void onFinish(ITestContext arg0) {
-
-
+    public void onFinish(ITestContext Context) {
+        Logger.logWarning("Test Execution Finished");
     }
 
     @Override
-    public void onStart(ITestContext arg0) {
-
-
-    }
-
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
-
-
+    public void onStart(ITestContext Context) {
+        Logger.logWarning("Test Execution Started");
     }
 
     @Override
     public void onTestFailure(ITestResult Result) {
-        System.out.println("TEST FAILED: " + Result.getTestName());
+        Logger.logWarning("TEST FAILED: ");
 
     }
 
     @Override
     public void onTestSkipped(ITestResult Result) {
-        // TODO Auto-generated method stub
+       Logger.logAction("TEST SKIPPED: " + Result.getTestName());
+//               .getTestContext().getCurrentXmlTest().getName());
 
     }
 
     @Override
     public void onTestStart(ITestResult Result) {
-        System.out.println("TEST STARTED:" + Result.getTestName());
+        Logger.logAction("TEST STARTED: " +  Result.getName());
     }
 
     @Override
     public void onTestSuccess(ITestResult Result) {
-        System.out.println("TEST PASSED:" + Result.getTestName());
+        Logger.logAction("TEST PASSED: " +  Result.getTestContext().getCurrentXmlTest().getName());
     }
 }

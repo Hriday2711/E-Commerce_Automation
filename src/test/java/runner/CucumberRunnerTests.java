@@ -1,13 +1,19 @@
 package runner;
 
 
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberPropertiesProvider;
 import io.cucumber.testng.TestNGCucumberRunner;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
+import org.testng.xml.XmlTest;
 import utils.BaseTest;
 import utils.DataProvider;
-import utils.Listener;
 
 
 /**
@@ -18,11 +24,12 @@ import utils.Listener;
                 plugin = {"json:target/cucumber.json",
                           "html:target/cucumber.html",
                           "pretty:com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+@Listeners(utils.Listener.class)
 public class CucumberRunnerTests extends AbstractTestNGCucumberTests {
+    Scenario scenario;
+    private static TestNGCucumberRunner testNGCucumberRunner;
 
-    private TestNGCucumberRunner testNGCucumberRunner;
-
-    @BeforeSuite(alwaysRun = true) @Parameters({"browser","platformName","browserVersion"})
+    @BeforeSuite(alwaysRun = true)
     public void setUpSuite() {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
@@ -30,7 +37,7 @@ public class CucumberRunnerTests extends AbstractTestNGCucumberTests {
     @AfterSuite(alwaysRun = true)
     public void tearDown() throws Exception {
         BaseTest baseTest = new BaseTest();
-        baseTest.closeTheDriver();
+        baseTest.closeTheDriver(DataProvider.getDriverType());
         testNGCucumberRunner.finish();
     }
 }

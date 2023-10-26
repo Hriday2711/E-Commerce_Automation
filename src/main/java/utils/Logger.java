@@ -8,12 +8,12 @@ public class Logger {
 
     //Creating these below methods so that we can use the log
     public static void logComment(String message) {
-        logger.info("INFO:" + message);
+        logger.info("INFO: " + message);
     }
-    public static void logWarning(String message) { logger.warn("WARNING:" + message);
+    public static void logWarning(String message) { logger.warn("WARNING: " + message);
     }
-    public static void logStep(String message) {logger.info("STEP:" + message);
+    public static void logStep(String message) {logger.info("STEP: " + message);
     }
-    public static void logAction(String message) {logger.warn("ACTION:" + message);
+    public static void logAction(String message) {logger.warn("ACTION: " + message);
     }
 }
