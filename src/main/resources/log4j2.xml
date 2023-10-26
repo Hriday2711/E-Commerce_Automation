@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="warn" name="MyApp">
+<Configuration>
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%m%n"/>
+        <Console name="Console">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="automation-logs" level="warn" additivity="true">
-            <AppenderRef ref="Console"/>
-        </Logger>
-        <Root level="warn">
+        <Root level="trace">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

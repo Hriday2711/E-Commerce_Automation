@@ -174,4 +174,10 @@ public class DataProvider {
         faker = new Faker();
         return faker.phoneNumber().cellPhone();
     }
+
+    public static String getDriverType() throws Exception {
+        String driverType = properties.getProperty("driverType");
+        if(driverType!=null) return properties.getProperty("driverType");
+        else throw new Exception("Driver Type is not defined in application.config file.");
+    }
 }

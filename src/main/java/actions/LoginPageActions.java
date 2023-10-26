@@ -48,7 +48,7 @@ public class LoginPageActions extends BaseTest implements LoginPageInterface {
     public void verifyIfUserIsOnSignUpOrLoginPage() throws Exception {
         Logger.logComment("Verifying the Sign Up and Login page content");
         common.waitUntilElementIsDisplayed(signUpHeader,5);
-        System.out.println(getTitleOfPage());
+        Logger.logComment("Title of the page is " + getTitleOfPage());
         common.verifyTextByLocatorAndExpectedText(signUpHeader,LocaleWeb.HomePage.signUpHeaderText);
         common.verifyTextByLocatorAndExpectedText(loginHeader,LocaleWeb.HomePage.loginHeaderText);
     }
@@ -65,7 +65,7 @@ public class LoginPageActions extends BaseTest implements LoginPageInterface {
         setFullName(fullName);
         common.enterTheDetailsOnInputField(nameInputField, fullName);
         setUserEmail(DataProvider.getRandomEmail());
-        System.out.println("User email is set as: " + getUserEmail());
+        Logger.logComment("User email is set as: " + getUserEmail());
         common.enterTheDetailsOnInputField(emailInputField, getUserEmail());
     }
 

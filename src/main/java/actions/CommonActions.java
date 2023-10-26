@@ -26,7 +26,7 @@ public class CommonActions extends BaseTest implements CommonsInterface {
     @Override
     public void verifyTextByLocatorAndExpectedText(By locator, String expectedText) throws Exception {
         waitUntilElementIsDisplayed(locator,5);
-        String elementText = getDriver().findElement(locator).getText();
+        String elementText = getDriver(getDriverType()).findElement(locator).getText();
         Assert.assertEquals(elementText,expectedText);
     }
 
@@ -34,36 +34,36 @@ public class CommonActions extends BaseTest implements CommonsInterface {
     public void enterTheDetailsOnInputField(By inputFieldLocator, String detail) throws Exception {
         waitUntilElementIsDisplayed(inputFieldLocator,10);
         scrollAndClickElement(inputFieldLocator,true);
-        getDriver().findElement(inputFieldLocator).sendKeys(detail);
+        getDriver(getDriverType()).findElement(inputFieldLocator).sendKeys(detail);
     }
 
     @Override
     public void waitUntilElementIsDisplayed(By locator, int timeToWaitInSeconds) throws Exception{
-        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(timeToWaitInSeconds));
+        wait = new WebDriverWait(getDriver(getDriverType()), Duration.ofSeconds(timeToWaitInSeconds));
         wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     @Override
     public void waitUntilElementIsClickable(By locator, int secondsToWait) throws Exception {
-        wait = new WebDriverWait(getDriver(),Duration.ofSeconds(secondsToWait));
+        wait = new WebDriverWait(getDriver(getDriverType()),Duration.ofSeconds(secondsToWait));
         wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
 
     @Override
     public void performForceClickUsingJS(By locator, boolean scrollToElement) throws Exception {
-        WebElement element = getDriver().findElement(locator);
+        WebElement element = getDriver(getDriverType()).findElement(locator);
         if(scrollToElement){
-            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);",element);
+            ((JavascriptExecutor) getDriver(getDriverType())).executeScript("arguments[0].scrollIntoView(true);",element);
         }
-        ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click();",element);
+        ((JavascriptExecutor) getDriver(getDriverType())).executeScript("arguments[0].click();",element);
     }
 
     @Override
     public void scrollAndClickElement(By locator, boolean scrollToElement) throws Exception{
         waitUntilElementIsDisplayed(locator,10);
-        WebElement element = getDriver().findElement(locator);
+        WebElement element = getDriver(getDriverType()).findElement(locator);
         if(scrollToElement){
-            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);",element);
+            ((JavascriptExecutor) getDriver(getDriverType())).executeScript("arguments[0].scrollIntoView(true);",element);
         }
         element.click();
     }
@@ -71,7 +71,7 @@ public class CommonActions extends BaseTest implements CommonsInterface {
     @Override
     public void selectDropdownValueByIndex(By dropdownLocator, int index) throws Exception {
         waitUntilElementIsDisplayed(dropdownLocator, 10);
-        WebElement dropdownElement = getDriver().findElement(dropdownLocator);
+        WebElement dropdownElement = getDriver(getDriverType()).findElement(dropdownLocator);
         Select dropdown = new Select(dropdownElement);
         dropdown.selectByIndex(index);
     }
@@ -79,7 +79,7 @@ public class CommonActions extends BaseTest implements CommonsInterface {
     @Override
     public String getValueOfOptionFromDropdown(By dropdownLocator, int index) throws Exception {
         waitUntilElementIsDisplayed(dropdownLocator,10);
-        WebElement dropdownElement = getDriver().findElement(dropdownLocator);
+        WebElement dropdownElement = getDriver(getDriverType()).findElement(dropdownLocator);
         Select dropdown = new Select(dropdownElement);
         List<WebElement> options = dropdown.getOptions();
         String optionValue = options.get(index).getText();
@@ -89,6 +89,6 @@ public class CommonActions extends BaseTest implements CommonsInterface {
     @Override
     public void refreshTheBrowserPage() throws Exception {
         Logger.logAction("Refreshing the Page");
-        getDriver().navigate().refresh();
+        getDriver(getDriverType()).navigate().refresh();
     }
 }

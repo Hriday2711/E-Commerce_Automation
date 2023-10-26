@@ -1,6 +1,6 @@
 
 @RegisterUser
-Scenario: Register a User - Enter Details on Create an Account page - Verify if the Account is created - Delete the user account [90m# src/test/resources/features/RegisterUser.feature:5[0m
+Scenario: Register a User - Enter Details on Create an Account page - Verify if the Account is created - Delete the user account [90m# src/test/resources/features/RegisterUser.feature:6[0m
   [32mGiven [0m[32mHome Page - Launch App and Verify Home screen[0m                                                                            [90m# stepDefination.HomePageStepDefinations.launchApp()[0m
   [32mAnd [0m[32mHome Page - Verify if the user is on Home Page[0m                                                                             [90m# stepDefination.HomePageStepDefinations.verifyTheHomePage()[0m
   [32mAnd [0m[32mHome Page - Click on SignUp/Login Button[0m                                                                                   [90m# stepDefination.HomePageStepDefinations.clickOnSignUpAndLoginButtonOnHomePage()[0m

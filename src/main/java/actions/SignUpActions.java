@@ -97,9 +97,9 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
         //Selecting the Title checkbox
         common.scrollAndClickElement(maleGenderCheckBox,true);
         //Checking if the name and email of the user are prefilled or not
-        String userName = getDriver().findElement(nameInputFieldXpath).getAttribute("value");
+        String userName = getDriver(getDriverType()).findElement(nameInputFieldXpath).getAttribute("value");
         Logger.logComment("Name of the user is: " + userName);
-        String email = getDriver().findElement(emailInputFieldXpath).getAttribute("value");
+        String email = getDriver(getDriverType()).findElement(emailInputFieldXpath).getAttribute("value");
         Assert.assertEquals(email, loginPage.getUserEmail());
         Logger.logComment("Email of the user is: "+ email);
         //Enter the password
