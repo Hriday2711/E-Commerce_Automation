@@ -84,13 +84,13 @@ public class DataProvider {
     }
 
     public static String getRemoteServerUserName(){
-        String remoteServerUserName = properties.getProperty("remoteServerUserName");
+        String remoteServerUserName = properties.getProperty("SAUCE_USERNAME");
         if(remoteServerUserName!=null) return  remoteServerUserName;
         else throw new RuntimeException("Remote server user-name is not defined in application.properties file.");
     }
 
     public static String getRemoteServerAccessKey(){
-        String remoteServerAccessKey = properties.getProperty("remoteServerAccessKey");
+        String remoteServerAccessKey = properties.getProperty("SAUCE_ACCESS_KEY");
         if(remoteServerAccessKey!=null) return remoteServerAccessKey;
         else throw new RuntimeException("Remote server access key is not defined in application.properties file.");
     }
