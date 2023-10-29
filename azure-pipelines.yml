@@ -6,8 +6,10 @@
 trigger:
 - master
 
-pool: Default
-  agent.name:Hriday Azure Agent
+pool:
+  name: 'Default'
+  demands:
+    agent.name:'Hriday Azure Agent'
 
 steps:
 - task: Maven@3
