@@ -6,7 +6,7 @@
 trigger:
 - master
 
-pool: default
+pool: Default
   agent.name:Hriday Azure Agent
 
 steps:
