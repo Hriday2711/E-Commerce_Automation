@@ -6,8 +6,8 @@
 trigger:
 - master
 
-pool:
-  vmImage: macOS-latest
+pool: default
+  agent.name:Hriday Azure Agent
 
 steps:
 - task: Maven@3
