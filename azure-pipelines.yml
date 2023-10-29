@@ -12,6 +12,12 @@ pool:
     Agent.Name -equals Hriday Azure Agent
 
 steps:
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '20'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+  
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
