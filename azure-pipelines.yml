@@ -9,7 +9,7 @@ trigger:
 pool:
   name: 'Default'
   demands:
-    agent.name:'Hriday Azure Agent'
+    Agent.Name -equals 'Hriday Azure Agent'
 
 steps:
 - task: Maven@3
