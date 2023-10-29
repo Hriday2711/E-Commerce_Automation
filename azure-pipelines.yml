@@ -7,9 +7,17 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: macOS-latest
 
 steps:
+- task: JavaToolInstaller@0
+    inputs:
+      versionSpec: "21"
+      jdkArchitectureOption: x64
+      jdkSourceOption: LocalDirectory
+      jdkFile: "/Users/mr.heart_2711/Desktop/Azure Agent/Agent/jdk-21_macos-x64_bin.tar.gz"
+      jdkDestinationDirectory: "/Users/mr.heart_2711/Desktop/Azure Agent/Agent"
+      cleanDestinationDirectory: true
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
