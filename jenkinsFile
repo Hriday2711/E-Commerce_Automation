@@ -2,16 +2,10 @@ pipeline {
     agent any
 
     stages {
-         stage('Build') {
-            steps {
-                echo 'Building...'
-                tool name: 'maven-latest', type:'maven'
-                tool name: 'jdk-latest', type:'jdk'
-            }
-        }
-    
         stage('Test') {
             steps {
+                tool name: 'maven-latest', type:'maven'
+                tool name: 'jdk-latest', type:'jdk'
                 sh 'mvn clean install test'
             }
 
