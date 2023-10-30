@@ -16,7 +16,7 @@ steps:
     jdkArchitectureOption: x64
     jdkSourceOption: LocalDirectory
     jdkFile: "/Users/mr.heart_2711/Desktop/Azure Agent/Agent/JDK/openjdk-20.0.1_macos-x64_bin.tar.gz"
-    jdkDestinationDirectory: "/Users/mr.heart_2711/Desktop/Azure Agent/Agent/JDK/extract/"
+    jdkDestinationDirectory: "/Users/mr.heart_2711/Desktop/Azure Agent/Agent/JDK/"
     cleanDestinationDirectory: true
 
 - task: Maven@3
