@@ -20,7 +20,7 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
     //Locators for the Home Page will be written here
     public static final By homeButton = By.xpath("(//a[normalize-space()='Home'])[1]");
     public static final By signUpAndLoginBtn = By.xpath("//header[@id='header']//a[@href='/login']");
-    public static final By deleteAccountButton = By.linkText(" Delete Account");
+    public static final By deleteAccountButton = By.xpath("//a[@href='/delete_account']");
 
     //*********** Methods initialized in the Interface will be implemented with the Java-Selenium Logic here ****************//
 
@@ -46,8 +46,6 @@ public class HomePageActions extends BaseTest implements HomePageInterface {
     @Override
     public void clickOnDeleteAccountButtonOnHomePage() throws Exception {
         Logger.logComment("Clicking on Delete Account Button on Home Page");
-        Logger.logComment("Refreshing the browser page");
-        common.refreshTheBrowserPage();
         common.waitUntilElementIsDisplayed(deleteAccountButton,10);
         common.scrollAndClickElement(deleteAccountButton,false);
     }

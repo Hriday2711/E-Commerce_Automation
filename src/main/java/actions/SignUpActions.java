@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import utils.BaseTest;
-import utils.DataProvider;
+import utils.DataFetcher;
 import utils.LocaleWeb;
 import utils.Logger;
 
@@ -59,6 +59,7 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
     public static final By accountCreatedHeaderXpath = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.accountCreatedHeader));
     public static final By accountCreatedBodyText1Xpath  = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.accountCreatedBodyText1));
     public static final By accountCreatedBodyText2Xpath = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.accountCreatedBodyText2));
+    public static final By accountDeletedHeaderXpath = By.xpath("//h2[@data-qa='account-deleted']");
     public static final By continueButtonXpath = By.xpath(String.format("//*[contains(text(),'%s')]",LocaleWeb.SignUpPage.continueButtonText));
 
     @Override
@@ -107,13 +108,13 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
         loginPage.setCurrentPassword(currentPassword);
         common.enterTheDetailsOnInputField(passwordInputFieldXpath,currentPassword);
         //Entering Date of Birth Details
-        int day = DataProvider.getRandomInt(1,30);
+        int day = DataFetcher.getRandomInt(1,30);
         String dobDay = common.getValueOfOptionFromDropdown(dobDayDropdown,day);
         common.selectDropdownValueByIndex(dobDayDropdown,day);
-        int month = DataProvider.getRandomInt(1,12);
+        int month = DataFetcher.getRandomInt(1,12);
         String dobMonth = common.getValueOfOptionFromDropdown(dobMonthDropdown,month);
         common.selectDropdownValueByIndex(dobMonthDropdown,month);
-        int year = DataProvider.getRandomInt(1,10);
+        int year = DataFetcher.getRandomInt(1,10);
         String dobYear = common.getValueOfOptionFromDropdown(dobYearDropdown,year);
         common.selectDropdownValueByIndex(dobYearDropdown,year);
         Logger.logComment("DOB of user is: " + dobDay + " " + dobMonth + " " + dobYear);
@@ -130,30 +131,30 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
         Logger.logComment("User first name is: " + LoginPageActions.getFirstName());
         common.enterTheDetailsOnInputField(lastNameInputXpath,LoginPageActions.getLastName());
         Logger.logComment("User last name is: " + LoginPageActions.getLastName());
-        common.enterTheDetailsOnInputField(companyNameInputXpath,DataProvider.getCompanyName());
-        String userAddress = DataProvider.getRandomAddress();
+        common.enterTheDetailsOnInputField(companyNameInputXpath, DataFetcher.getCompanyName());
+        String userAddress = DataFetcher.getRandomAddress();
         Logger.logComment("Address of the user is: " + userAddress);
         common.enterTheDetailsOnInputField(addressInputXpath,userAddress);
         //Selecting country from the dropdown
-        int country = DataProvider.getRandomInt(0,6);
+        int country = DataFetcher.getRandomInt(0,6);
         String countryName = common.getValueOfOptionFromDropdown(countryDropdownXpath,country);
         Logger.logComment("User's country is: " + countryName);
         common.scrollAndClickElement(countryDropdownXpath,true);
         common.selectDropdownValueByIndex(countryDropdownXpath,country);
         //Entering the State Information
-        String stateName = DataProvider.getRandomStateName();
+        String stateName = DataFetcher.getRandomStateName();
         Logger.logComment("User's State is: " + stateName);
         common.enterTheDetailsOnInputField(stateInputXpath,stateName);
         //Entering city information
-        String cityName = DataProvider.getRandomCityName();
+        String cityName = DataFetcher.getRandomCityName();
         Logger.logComment("User's City is : " + cityName);
         common.enterTheDetailsOnInputField(cityInputXpath,cityName);
         //Entering the zipcode information
-        String zipCode = DataProvider.getRandomZipCode();
+        String zipCode = DataFetcher.getRandomZipCode();
         Logger.logComment("User's zipcode is: " + zipCode);
         common.enterTheDetailsOnInputField(zipCodeInputXpath,zipCode);
         //Entering the mobile number info
-        String mobNumber = DataProvider.getRandomMobileNumber();
+        String mobNumber = DataFetcher.getRandomMobileNumber();
         Logger.logComment("User's mobile number is: " + mobNumber);
         common.enterTheDetailsOnInputField(mobileNumberInputXpath,mobNumber);
     }
@@ -172,5 +173,12 @@ public class SignUpActions extends BaseTest implements SignUpPageInterface {
     public void clickOnContinueButtonOnAccountCreationConfirmationPage() throws Exception {
         Logger.logComment("Clicking on Continue button on Account creation confirmation page");
         common.scrollAndClickElement(continueButtonXpath,false);
+    }
+
+    @Override
+    public void verifyContentOfAccountDeletedConfirmationPage() throws Exception {
+        Logger.logComment("Verifying if the User account is deleted or not");
+        common.waitUntilElementIsDisplayed(accountDeletedHeaderXpath,10);
+        Assert.assertTrue(getDriver(getDriverType()).findElement(accountCreatedHeaderXpath).isDisplayed(),"Account Deleted verification message is not displayed");
     }
 }

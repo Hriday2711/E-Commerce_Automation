@@ -1,6 +1,5 @@
 package interfaces;
 
-import io.cucumber.java.an.E;
 import org.openqa.selenium.By;
 
 public interface CommonsInterface {
@@ -59,4 +58,9 @@ public interface CommonsInterface {
      * Refresh the browser page
      */
     void refreshTheBrowserPage() throws Exception;
+
+    /**
+     * Launch the URL in a new Browser Instance
+     */
+    void launchURLInANewTab(String url) throws Exception;
 }

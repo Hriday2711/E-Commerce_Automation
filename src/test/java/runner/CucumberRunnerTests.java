@@ -1,19 +1,15 @@
 package runner;
 
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
-import io.cucumber.testng.CucumberOptions;
-import io.cucumber.testng.AbstractTestNGCucumberTests;
-import io.cucumber.testng.CucumberPropertiesProvider;
-import io.cucumber.testng.TestNGCucumberRunner;
+import io.cucumber.testng.*;
 import org.testng.ITestContext;
-import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.xml.XmlTest;
 import utils.BaseTest;
-import utils.DataProvider;
+import utils.DataFetcher;
+
+import java.util.Objects;
 
 
 /**
@@ -28,15 +24,27 @@ public class CucumberRunnerTests extends AbstractTestNGCucumberTests {
     Scenario scenario;
     private static TestNGCucumberRunner testNGCucumberRunner;
 
-    @BeforeSuite(alwaysRun = true)
-    public void setUpSuite() {
-        testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+    @BeforeClass(alwaysRun = true)
+    public void setUpClass(ITestContext context) {
+        XmlTest currentXmlTest = context.getCurrentXmlTest();
+        Objects.requireNonNull(currentXmlTest);
+        CucumberPropertiesProvider properties = currentXmlTest::getParameter;
+        this.testNGCucumberRunner = new TestNGCucumberRunner(this.getClass(), properties);
     }
 
-    @AfterSuite(alwaysRun = true)
+    @Test(description = "Runs Cucumber Scenarios", dataProvider = "scenarios")
+    public void runScenario(PickleWrapper pickleWrapper, FeatureWrapper featureWrapper) {
+        this.testNGCucumberRunner.runScenario(pickleWrapper.getPickle());
+    }
+    @DataProvider
+    public Object[][] scenarios(){
+        return testNGCucumberRunner.provideScenarios();
+    }
+
+    @AfterClass(alwaysRun = true)
     public void tearDown() throws Exception {
         BaseTest baseTest = new BaseTest();
-        baseTest.closeTheDriver(DataProvider.getDriverType());
+        baseTest.closeTheDriver(DataFetcher.getDriverType());
         testNGCucumberRunner.finish();
     }
 }

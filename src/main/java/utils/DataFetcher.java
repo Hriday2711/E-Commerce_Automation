@@ -5,9 +5,8 @@ import com.github.javafaker.Faker;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Properties;
-import java.util.Random;
 
-public class DataProvider {
+public class DataFetcher {
 
     /**
      * propertyFilePath: This is just a String variable which holds the information of the config file path
@@ -23,7 +22,7 @@ public class DataProvider {
     private static Faker faker;
 
 
-    public DataProvider(){
+    public DataFetcher(){
         BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(propertyFilePath));
@@ -65,7 +64,7 @@ public class DataProvider {
      * This method will help to get the web-application url for the automation test
      * @return - the application url in string format
      */
-    public String getApplicationUrl() {
+    public static String getApplicationUrl() {
         String url = properties.getProperty("applicationURL");
         if(url != null) return url;
         else throw new RuntimeException("url not specified in the Configuration.properties file.");

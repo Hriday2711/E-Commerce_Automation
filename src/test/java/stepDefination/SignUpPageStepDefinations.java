@@ -41,4 +41,11 @@ public class SignUpPageStepDefinations extends PageObjects_Base {
     public void clickOnContinueButtonOnAccountCreationConfirmationPage() throws Exception {
         signUpPage.clickOnContinueButtonOnAccountCreationConfirmationPage();
     }
+
+    @Test
+    @And("^Sign Up - Verify Confirmation of Account Deleted$")
+    public void verifyContentOfAccountDeletedConfirmationPage() throws Exception {
+        common.refreshTheBrowserPage();
+        signUpPage.verifyContentOfAccountDeletedConfirmationPage();
+    }
 }

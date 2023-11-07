@@ -32,4 +32,9 @@ public interface SignUpPageInterface {
      * Click on Continue Button on Account creation confirmation page
      */
     void clickOnContinueButtonOnAccountCreationConfirmationPage() throws Exception;
+
+    /**
+     * Verify the content of Account Deleted on Sign Up page
+     */
+    void verifyContentOfAccountDeletedConfirmationPage() throws Exception;
 }
