@@ -18,7 +18,7 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BaseTest extends DataProvider {
+public class BaseTest extends DataFetcher {
     //Setting up the Remote server url
     URL url;
     {

@@ -4,7 +4,7 @@ import interfaces.LoginPageInterface;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.BaseTest;
-import utils.DataProvider;
+import utils.DataFetcher;
 import utils.LocaleWeb;
 import utils.Logger;
 
@@ -20,8 +20,11 @@ public class LoginPageActions extends BaseTest implements LoginPageInterface {
     public static final By signUpHeader = By.xpath(String.format("//h2[contains(text(),'%s')]",LocaleWeb.HomePage.signUpHeaderText));
     public static final By loginHeader = By.xpath(String.format("//h2[contains(text(),'%s')]", LocaleWeb.HomePage.loginHeaderText));
     public static final By nameInputField = By.name("name");
-    public static final By emailInputField = By.xpath("(//input[@type='email'])[2]");
+    public static final By emailInputFieldForSignUp = By.xpath("(//input[@type='email'])[2]");
+    public static final By emailInputFieldForLogin = By.xpath("(//input[@type='email'])[1]");
+    public static final By passwordInputFieldForLogin = By.xpath("//input[@type='password']");
     public static final By signUpButton = By.xpath("//form[@action='/signup']//button");
+    public static final By loginButton = By.xpath("//form[@action='/login']//button");
     public static ThreadLocal<String> fullName = new ThreadLocal();
     public static String getFullName() {return fullName.get();}
     public static void setFullName(String fullName) {LoginPageActions.fullName.set(fullName);}
@@ -56,7 +59,7 @@ public class LoginPageActions extends BaseTest implements LoginPageInterface {
     @Override
     public void enterTheDetailsOnSignUpSection() throws Exception {
         Logger.logComment("Entering the details of User for Sign Up");
-        String fullName = DataProvider.getRandomFullName();
+        String fullName = DataFetcher.getRandomFullName();
         String[] splitFullName = fullName.split(" ");
         String firstName = splitFullName[0];
         String lastName = splitFullName[1];
@@ -64,14 +67,29 @@ public class LoginPageActions extends BaseTest implements LoginPageInterface {
         setLastName(lastName);
         setFullName(fullName);
         common.enterTheDetailsOnInputField(nameInputField, fullName);
-        setUserEmail(DataProvider.getRandomEmail());
+        setUserEmail(DataFetcher.getRandomEmail());
         Logger.logComment("User email is set as: " + getUserEmail());
-        common.enterTheDetailsOnInputField(emailInputField, getUserEmail());
+        common.enterTheDetailsOnInputField(emailInputFieldForSignUp, getUserEmail());
+    }
+
+    @Override
+    public void enterTheCurrentUserDetailsForLogin() throws Exception {
+        Logger.logComment("Entering the Current User Credentials for Login");
+        //Entering the email address of the user
+        common.enterTheDetailsOnInputField(emailInputFieldForLogin,getUserEmail());
+        //Entering the password of the user
+        common.enterTheDetailsOnInputField(passwordInputFieldForLogin,"Password1!");
     }
 
     @Override
     public void clickOnSignUpButtonOnLoginPage() throws Exception {
         Logger.logComment("Clicking on Sign Up Button on Login page");
         common.scrollAndClickElement(signUpButton, false);
+    }
+
+    @Override
+    public void clickOnLoginButtonOnLoginPage() throws Exception {
+        Logger.logComment("Clicking on Login Button On Login Page");
+        common.scrollAndClickElement(loginButton, false);
     }
 }

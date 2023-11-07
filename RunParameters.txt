@@ -1,0 +1,5 @@
+# Give this command in IntelliJ VM options if you want to run a specific cucumber-tag
+-Dcucumber.filter.tags="@tagName"
+
+# Give this command in IntelliJ VM options if you want to run multiple sets of cucumber-tags
+-Dcucumber.options="--tags '@tag1 and @tag2'"

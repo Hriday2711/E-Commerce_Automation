@@ -23,4 +23,16 @@ public class LoginPageStepDefinations extends PageObjects_Base {
     public void clickOnSignUpButton() throws Exception {
         loginPage.clickOnSignUpButtonOnLoginPage();
     }
+
+    @Test
+    @And("^Login Page - Enter the Details of the Current User on Login Page$")
+    public void enterTheDetailsOfCurrentUserOnLoginPage() throws Exception {
+        loginPage.enterTheCurrentUserDetailsForLogin();
+    }
+
+    @Test
+    @And("^Login Page - Click on Login Button on Login Page$")
+    public void clickOnLoginButton() throws Exception {
+        loginPage.clickOnLoginButtonOnLoginPage();
+    }
 }

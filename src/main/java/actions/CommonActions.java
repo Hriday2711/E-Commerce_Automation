@@ -1,10 +1,7 @@
 package actions;
 
 import interfaces.CommonsInterface;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +10,7 @@ import utils.BaseTest;
 import utils.Logger;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommonActions extends BaseTest implements CommonsInterface {
@@ -90,5 +88,14 @@ public class CommonActions extends BaseTest implements CommonsInterface {
     public void refreshTheBrowserPage() throws Exception {
         Logger.logAction("Refreshing the Page");
         getDriver(getDriverType()).navigate().refresh();
+    }
+
+    @Override
+    public void launchURLInANewTab(String url) throws Exception {
+        Logger.logComment("Launch the HomePage in a new Browser");
+        BaseTest base = new BaseTest();
+        ArrayList<String> tabs = new ArrayList<String>(getDriver(getDriverType()).getWindowHandles());
+        getDriver(getDriverType()).switchTo().newWindow(WindowType.TAB);
+        getDriver(getDriverType()).get(url);
     }
 }
