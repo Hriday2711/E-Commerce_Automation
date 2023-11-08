@@ -44,9 +44,9 @@ public class DataFetcher {
      * @return - browser from the app-config file
      */
     public String getBrowser(){
-        String browser = properties.getProperty("browser");
+        String browser = System.getProperty("browser");
         if(browser!= null) return browser;
-        else throw new RuntimeException("Browser not specified in the application.properties file.");
+        else throw new RuntimeException("Browser not specified. Please check the Test VM options.");
     }
 
     /**
@@ -55,9 +55,9 @@ public class DataFetcher {
      * @return - the time in seconds for implicit wait
      */
     public long getImplicitlyWait() {
-        String implicitlyWait = properties.getProperty("implicitlyWait");
+        String implicitlyWait = System.getProperty("ImplicitWait");
         if(implicitlyWait != null) return Long.parseLong(implicitlyWait);
-        else throw new RuntimeException("implicitlyWait not specified in the Configuration.properties file.");
+        else throw new RuntimeException("Implicit Wait is not defined in the Test VM options.");
     }
 
     /**
@@ -65,51 +65,51 @@ public class DataFetcher {
      * @return - the application url in string format
      */
     public static String getApplicationUrl() {
-        String url = properties.getProperty("applicationURL");
+        String url = System.getProperty("appURL");
         if(url != null) return url;
-        else throw new RuntimeException("url not specified in the Configuration.properties file.");
+        else throw new RuntimeException("Application URL is not specified in the Test VM options.");
     }
 
     public static String getRemoteServerURL(){
-        String remoteServerURL = properties.getProperty("remoteServerURL");
+        String remoteServerURL = System.getProperty("remoteServerURL");
         if(remoteServerURL!=null) return remoteServerURL;
-        else throw new RuntimeException("Remote Server URL is not defined. Please check the application.properties file.");
+        else throw new RuntimeException("Remote Server URL is not specified in the Test VM options.");
     }
 
     public static String getBrowserVersion(){
-        String remoteBrowserVersion = properties.getProperty("browserVersion");
+        String remoteBrowserVersion = System.getProperty("browserVersion");
         if(remoteBrowserVersion!=null) return remoteBrowserVersion;
-        else throw new RuntimeException("Remote Browser Version is not defined. Please check application.properties file.");
+        else throw new RuntimeException("Remote Browser Version is not specified in the Test VM options.");
     }
 
     public static String getRemoteServerUserName(){
-        String remoteServerUserName = properties.getProperty("SAUCE_USERNAME");
+        String remoteServerUserName = System.getProperty("remoteServerUserName");
         if(remoteServerUserName!=null) return  remoteServerUserName;
-        else throw new RuntimeException("Remote server user-name is not defined in application.properties file.");
+        else throw new RuntimeException("Remote Server User-Name is not specified in the Test VM options.");
     }
 
     public static String getRemoteServerAccessKey(){
-        String remoteServerAccessKey = properties.getProperty("SAUCE_ACCESS_KEY");
+        String remoteServerAccessKey = System.getProperty("remoteServerAccessKey");
         if(remoteServerAccessKey!=null) return remoteServerAccessKey;
-        else throw new RuntimeException("Remote server access key is not defined in application.properties file.");
+        else throw new RuntimeException("Remote server access key is not defined in Test VM options.");
     }
 
     public static String getRemoteServerBuild(){
-        String remoteServerBuild = properties.getProperty("remoteServerBuild");
+        String remoteServerBuild = System.getProperty("remoteServerBuild");
         if(remoteServerBuild!=null) return remoteServerBuild;
-        else throw new RuntimeException("Remote Server Build is not defined in application.properties file");
+        else throw new RuntimeException("Remote Server Build is not defined in the Test VM options.");
     }
 
     public static String getPlatformName(){
-        String platformName = properties.getProperty("platformName");
+        String platformName = System.getProperty("platform");
         if(platformName!=null) return platformName;
-        else throw new RuntimeException("Platform Name is not defined in application.properties file");
+        else throw new RuntimeException("Platform Name is not defined in Test VM options.");
     }
 
     public static String getRemoteServerTestName(){
-        String remoteServerTestName = properties.getProperty("remoteServerTestName");
+        String remoteServerTestName = System.getProperty("remoteServerTestName");
         if(remoteServerTestName!=null) return remoteServerTestName;
-        else throw new RuntimeException("Remote server test name is not defined in application.properties file.");
+        else throw new RuntimeException("Remote server test name is not specified in the Test VM options.");
     }
 
     /**
@@ -175,8 +175,8 @@ public class DataFetcher {
     }
 
     public static String getDriverType() throws Exception {
-        String driverType = properties.getProperty("driverType");
-        if(driverType!=null) return properties.getProperty("driverType");
-        else throw new Exception("Driver Type is not defined in application.config file.");
+        String driverType = System.getProperty("driverType");
+        if(driverType!=null) return driverType;
+        else throw new Exception("Driver Type is not defined in the Test VM options");
     }
 }
