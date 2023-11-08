@@ -3,3 +3,17 @@
 
 # Give this command in IntelliJ VM options if you want to run multiple sets of cucumber-tags
 -Dcucumber.options="--tags '@tag1 and @tag2'"
+
+#Mandatory Test-Parameters to be entered in IntelliJ VM options for a successful test - execution
+
+-Dbrowser="browserName" ---- name of the browser to be used for test-execution
+-DplatForm="platFormName" ---- name of the Operating system to be used (Windows) or (mac0S) needed if the test-execution is set to be remote
+-DdriverType="local/remote" ---- type of test-execution to be performed pass the value "remote" or "local" depending upon the requirement
+-DbrowserVersion="latest" --- this parameter is required only if you are executing the tests on a remote machine
+-Dcucumber.filter.tags="@tagName" -- give this command if you want to execute only a specific scenario
+-Dcucumber.options="--tags '@tag1 and @tag2'" --- give this command if you want to execute multiple scenarios
+-Durl="https://automationexercise.com/" --- pass the url that you need to perform the automation test on
+-DImplicitWait=10 --- required implement the implicit wait time for the test-execution
+
+
+Note: There is a file named application.properties in this framework which is responsible to run the tests on CI tool like Jenkins

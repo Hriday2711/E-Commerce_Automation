@@ -20,7 +20,7 @@ Feature: Register and Delete a User on Automation Exercise e-Commerce website
     #Below scenario will delete the user account from Automation exercise website
     @RegisterUser002
     Scenario: Login with same credentials - Navigate to Home Page - Delete the user account - Verify the confirmation page
-      Given Common - Launch HomePage in new Browser Instance
+      Given Home Page - Launch App and Verify Home screen
       When Home Page - Verify if the user is on Home Page
        Then Home Page - Click on Delete Account Button
         And Common - Refresh the Web-Page
